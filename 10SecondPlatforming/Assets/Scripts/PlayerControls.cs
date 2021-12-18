@@ -56,6 +56,43 @@ public class PlayerControls : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Goal")
+        {
+            SceneManager.LoadScene(GameManager.instance.levelNum);
+            ScoreGain();
+            GameManager.instance.streak += 1;
+            GameManager.instance.timer = 10;
+        }
+        else
+        {
+            GameManager.instance.lives -= 1;
+            GameManager.instance.streak = 0;
+            SceneManager.LoadScene(GameManager.instance.levelNum);
+            GameManager.instance.timer = 10;
+        }
+    }
+
+    void ScoreGain()
+    {
+        if (GameManager.instance.streak == 1)
+        {
+            GameManager.instance.score += 100;
+        }
+        else if (GameManager.instance.streak == 2)
+        {
+            GameManager.instance.score += 150;
+        }
+        else if (GameManager.instance.streak == 3)
+        {
+            GameManager.instance.score += 200;
+        }
+        else if (GameManager.instance.streak >= 4)
+        {
+            GameManager.instance.score += 250;
+        }
+        else
+        {
+            GameManager.instance.score += 50;
+        }
     }
 }

@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public float timer;
-    public int lives;
-    public int score;
-    public int streak;
+    public float timer = 10;
+    public int lives = 3;
+    public int score = 0;
+    public int streak = 0;
+    public int levelNum;
 
     // Start is called before the first frame update
     void Start()
@@ -34,5 +35,6 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(7);
             lives = -1;
         }
+        levelNum = Random.Range(2, 6);
     }
 }
